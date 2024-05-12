@@ -1,0 +1,35 @@
+<div class="flex flex-col gap-10">
+  <div class="flex flex-row justify-center gap-10">
+    <input
+      [(ngModel)]="username"
+      placeholder="Enter GitHub username"
+      class="px-10 py-5 border-2 border-black rounded- font-semibold rounded-lg"
+    />
+    <button
+      (click)="getRepos()"
+      class="bg-blue-700 text-white px-10 py-5 rounded-lg hover:bg-blue-600 font-bold"
+    >
+      Get Repos
+    </button>
+  </div>
+  <div class="m-10 flex flex-row gap-10 items-center" *ngIf="user">
+    <div class="w-52 h-52 rounded-full bg-black">
+      <img [src]="user.avatar_url" alt="Profile Picture" class="rounded-full" />
+    </div>
+    <div>
+      <h1 class="font-black text-3xl">{{ user.name }}</h1>
+      <p>Location: {{ user.location }}</p>
+      <p>Twitter: {{ user.twitter_username }}</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 grid-rows-10 gap-5">
+    <div
+      *ngFor="let repo of repos"
+      class="flex flex-col gap-5 border-2 border-black px-10 py-5"
+    >
+      <h2 class="text-bold text-2xl">{{ repo.name }}</h2>
+      <p class="text-semibold text-lg">{{ repo.description }}</p>
+      <a [href]="repo.html_url">Repo Link</a>
+    </div>
+  </div>
+</div>
